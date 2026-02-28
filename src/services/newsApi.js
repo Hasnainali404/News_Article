@@ -1,12 +1,10 @@
-const API_KEY = (import.meta.env.VITE_NEWS_API_KEY || '').trim();
-const BASE_URL = 'https://newsapi.org/v2';
+const BASE_URL = '/api';
 
 // Simple in-memory cache
 const cache = new Map();
 const TTL = 1000 * 60 * 5; // 5 minutes
 
 export async function fetchTopHeadlines(params = {}) {
-  if (!API_KEY) throw new Error('API key is not defined');
 
   // Only include params if defined
   const queryObj = { country: 'us', ...params };
@@ -14,7 +12,7 @@ export async function fetchTopHeadlines(params = {}) {
     (key) => queryObj[key] === undefined && delete queryObj[key]
   );
 
-  const url = `${BASE_URL}/top-headlines?${new URLSearchParams(queryObj)}&apiKey=${API_KEY}`;
+  const url = `${BASE_URL}/news?${new URLSearchParams(queryObj)}`;
 
   // Check cache first
   if (cache.has(url)) {
