@@ -1,4 +1,4 @@
-const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
+const API_KEY = (import.meta.env.VITE_NEWS_API_KEY || '').trim();
 const BASE_URL = 'https://newsapi.org/v2';
 
 // Simple in-memory cache
@@ -26,6 +26,10 @@ export async function fetchTopHeadlines(params = {}) {
 
   if (res.status === 429) {
     throw new Error('RATE_LIMITED');
+  }
+
+  if (res.status === 426) {
+    throw new Error('UPGRADE_REQUIRED');
   }
 
   if (!res.ok) {

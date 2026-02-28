@@ -30,6 +30,8 @@ export default function Home() {
       .catch((err) => {
         if (err.message === 'RATE_LIMITED') {
           setError('You have reached the API request limit. Please wait.');
+        } else if (err.message === 'UPGRADE_REQUIRED') {
+          setError('NewsAPI requires a paid plan for browser-side requests. Please check your account.');
         } else {
           setError('Failed to fetch news. Please try again.');
         }
