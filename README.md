@@ -1,16 +1,59 @@
-# React + Vite
+# News Article Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive news application built with React and Vite, featuring real-time news articles from NewsAPI. This project is optimized for deployment on Vercel with a built-in serverless function proxy to bypass NewsAPI's free-plan browser restrictions.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **Real-time News**: Fetches the latest top headlines.
+-   **Search**: Filter articles by keywords with debounced search.
+-   **Categories**: Browse news by category (General, Business, Tech, etc.).
+-   **Responsive Design**: Premium UI built with Tailwind CSS, fully responsive across all devices.
+-   **Serverless Proxy**: Integrated Vercel serverless functions to handle API requests securely and bypass CORS/426 errors.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-   **Frontend**: React 19, Vite, Tailwind CSS, Lucide React.
+-   **Routing**: React Router 7.
+-   **Backend**: Vercel Serverless Functions (Node.js).
+-   **API**: [NewsAPI.org](https://newsapi.org/).
 
-## Expanding the ESLint configuration
+## 📦 Setup & Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. Clone the repository
+
+```bash
+git clone <repository-url>
+cd news-article
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Environment Variables
+
+Create a `.env` file in the root directory and add your NewsAPI key:
+
+```env
+VITE_NEWS_API_KEY=your_news_api_key_here
+```
+
+### 4. Run locally
+
+Using Vite dev server:
+```bash
+npm run dev
+```
+
+Alternatively, to test serverless functions locally, use the Vercel CLI:
+```bash
+vercel dev
+```
+
+## 🌐 Deployment on Vercel
+
+When deploying to Vercel, make sure to add the `VITE_NEWS_API_KEY` to your **Environment Variables** in the Vercel Dashboard.
+
+The project is configured via `vercel.json` to handle API routing through the `/api/news` proxy, ensuring you don't encounter `426 Upgrade Required` errors in production.
